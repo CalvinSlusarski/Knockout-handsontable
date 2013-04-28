@@ -22,6 +22,17 @@
             }
         }
         return o;
+    };
+    function setData(key, val, obj) {
+        if (!obj) obj = data; //outside (non-recursive) call, use "data" as our base object
+        var ka = key.split(/\./); //split the key by the dots
+        if (ka.length < 2) {
+            obj[ka[0]] = val; //only one part (no dots) in key, just set value
+        } else {
+            if (!obj[ka[0]]) obj[ka[0]] = {}; //create our "new" base obj if it doesn't exist
+            obj = obj[ka.shift()]; //remove the new "base" obj from string array, and hold actual object for recursive call
+            setData(ka.join("."), val, obj); //join the remaining parts back up with dots, and recursively set data on our new "base" obj
+        }
     }
     //connect items with observableArrays
     var prepareColumnOptions = function (columns) {
@@ -41,7 +52,8 @@
                                 if (typeof prop === 'function') {
                                     prop(value);
                                 } else {
-                                    prop = value;
+                                    setData(propertyName.data, value, row);
+                                    //prop = value;
                                 }
                             }
                         }
