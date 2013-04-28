@@ -52,10 +52,7 @@ Dependencies
 
 
 Examples
---------
-The `examples` directory contains a sample that shows how three independent view models can exchange information without direct references to each other.
 
-View the sample in jsFiddle here: <http://jsfiddle.net/rniemeyer/mg3hj/>
 
 License
 -------
