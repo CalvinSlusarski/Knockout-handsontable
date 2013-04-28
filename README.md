@@ -5,8 +5,9 @@ Knockout-handsontable
 
 Basic Usage
 
------------
+
 View Model
+-----------
 ```js
 $(document).ready(function () {
      function Person() {
@@ -28,7 +29,9 @@ $(document).ready(function () {
  });
 
 ```
+
 HTML Elements
+-----------
 ```html
     <div class="handsontable" data-bind="handsontable: {
             data: self.listOfPersons(),
