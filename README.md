@@ -52,7 +52,9 @@ Dependencies
 
 
 Examples
+--------
 
+View the sample in jsFiddle here: <http://jsfiddle.net/calvinslusarski/x3ejL/2/>
 
 License
 -------
