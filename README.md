@@ -4,8 +4,9 @@ Knockout-handsontable
 *Knockout-handsontable* is a binding for [Knockout.js](http://knockoutjs.com/) designed  designed to connect observableArrays with [handsontable](https://github.com/warpech/jquery-handsontable).  This allows handsontable to bind to the knockout viewmodel to communicate with the handsontable and the handsontable to communicate with observables or variables.
 
 Basic Usage
-=====================
-VIEW MODEL
+
+-----------
+View Model
 ```js
 $(document).ready(function () {
      function Person() {
@@ -27,7 +28,7 @@ $(document).ready(function () {
  });
 
 ```
-HTML ELEMENTS
+HTML Elements
 ```html
     <div class="handsontable" data-bind="handsontable: {
             data: self.listOfPersons(),
