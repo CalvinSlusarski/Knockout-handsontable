@@ -14,7 +14,7 @@ $(document).ready(function (fname, lname, sex, phone) {
          var self = this;
          self.fname = ko.observable(fname);
          self.lname = ko.observable(lname);
-         self.fullname = {sex: sex, phone: phone}
+         self.info = {sex: sex, phone: phone}
      }
 
     function exampleVM() {
@@ -35,10 +35,12 @@ HTML Elements
 ```html
     <div class="handsontable" data-bind="handsontable: {
             data: self.listOfPersons(),
-            colHeaders: ['First Name', 'Last Name'],
+            colHeaders: ['First Name', 'Last Name', 'Sex', 'Phone'],
             columns: [
               {data: 'fname'},
-              {data: 'lname'}
+              {data: 'lname'},
+              {data: 'info.sex'},
+              {data: 'info.phone'}
             ]
         }"></div>
 ```
