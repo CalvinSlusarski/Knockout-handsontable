@@ -9,19 +9,19 @@ Basic Usage
 View Model
 -----------
 ```js
-$(document).ready(function () {
+$(document).ready(function (fname, lname, sex, phone) {
      function Person() {
          var self = this;
-         self.fname = ko.observable('Bob');
-         self.lname = ko.observable('Smith');
-
+         self.fname = ko.observable(fname);
+         self.lname = ko.observable(lname);
+         self.fullname = {sex: sex, phone: phone}
      }
 
     function exampleVM() {
          self.listOfPersons = ko.observableArray([]);
-         self.listOfPersons.push(new Person());
-         self.listOfPersons.push(new Person());
-         self.listOfPersons.push(new Person());
+         self.listOfPersons.push(new Person('Cave', 'Johnson', 'Male', '555-5555'));
+         self.listOfPersons.push(new Person('Caroline', '', 'Female', '652-4556'));
+         self.listOfPersons.push(new Person('Morality', 'Core', 'none', '555-5555'));
      }
      //window.AppVM = new AppViewModel();
      ko.applyBindings(new exampleVM());
