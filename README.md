@@ -34,7 +34,7 @@ HTML Elements
 -----------
 ```html
     <div class="handsontable" data-bind="handsontable: {
-            data: self.listOfPersons(),
+            data: listOfPersons(),
             colHeaders: ['First Name', 'Last Name', 'Sex', 'Phone'],
             columns: [
               {data: 'fname'},
