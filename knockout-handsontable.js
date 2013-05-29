@@ -89,7 +89,6 @@
                 }
             });
             
-            console.log(mappedColumns);
             return mappedColumns;
         }
     }
