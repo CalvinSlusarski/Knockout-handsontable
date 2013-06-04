@@ -47,7 +47,7 @@
                 return {data: (function (attr) {
                     return function (row, value) {
                         prop = peekByString(row, propertyName.data);
-                        if (prop) {
+                        if (prop != null) {
                             if (typeof value === 'undefined') {
                                 // GET
                                 return ko.utils.unwrapObservable(prop);
@@ -62,7 +62,7 @@
                             }
                         }
                     }
-                }//validate property type
+                }
                  )(),type:(function (attr) {
                      if (propertyName.type){
                     	 return propertyName.type;
