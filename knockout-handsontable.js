@@ -10,18 +10,21 @@
     var unwrap = ko.utils.unwrapObservable;
 
     var peekByString = function (o, s) {
-        s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
-        s = s.replace(/^\./, '');           // strip a leading dot
-        var a = s.split('.');
-        while (a.length) {
-            var n = a.shift();
-            if (n in o) {
-                o = o[n];
-            } else {
-                return;
-            }
-        }
-        return o;
+    	if(s)
+    		{
+		        s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+		        s = s.replace(/^\./, '');           // strip a leading dot
+		        var a = s.split('.');
+		        while (a.length) {
+		            var n = a.shift();
+		            if (n in o) {
+		                o = o[n];
+		            } else {
+		                return;
+		            }
+		        }
+		        return o;
+    		}
     };
     function setData(key, val, obj) {
         if (!obj) obj = data; //outside (non-recursive) call, use "data" as our base object
@@ -34,6 +37,7 @@
             setData(ka.join("."), val, obj); //join the remaining parts back up with dots, and recursively set data on our new "base" obj
         }
     }
+    
     //connect items with observableArrays
     var prepareColumnOptions = function (columns) {
         var props = '',
@@ -43,7 +47,7 @@
                 return {data: (function (attr) {
                     return function (row, value) {
                         prop = peekByString(row, propertyName.data);
-                        if (prop) {
+                        if (prop != null) {
                             if (typeof value === 'undefined') {
                                 // GET
                                 return ko.utils.unwrapObservable(prop);
@@ -58,9 +62,16 @@
                             }
                         }
                     }
-                })()
+                }
+                 )(),type:(function (attr) {
+                     if (propertyName.type){
+                    	 return propertyName.type;
+                         }else 
+                        	return 'text';
+                     		})()
                 }
             });
+            
             return mappedColumns;
         }
     }
@@ -68,10 +79,10 @@
         init: function (element, valueAccessor, allBindingsAccessor, data, context) {
             var $element = $(element),
                 options = unwrap(valueAccessor()) || {},
+               // tipos= allBindingsAccessor
                 columns = unwrap(options.columns) || {};
             
             options.columns = prepareColumnOptions(columns);
-
             // return data in array format
             $element.handsontable(options);
 
