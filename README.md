@@ -56,7 +56,7 @@ Dependencies
 Examples
 --------
 
-View the sample in jsFiddle here: <http://jsfiddle.net/calvinslusarski/x3ejL/153/>
+View the sample in jsFiddle here: <http://jsfiddle.net/calvinslusarski/x3ejL/161/>
 
 License
 -------
