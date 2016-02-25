@@ -47,7 +47,6 @@
              var tempColumn = $.extend(true, {}, column);
              tempColumn.data =(function (attr) {
                          return function (row, value) {
-                             console.log(column.data);
                              prop = peekByString(row, column.data);
 
                              if (prop) {
