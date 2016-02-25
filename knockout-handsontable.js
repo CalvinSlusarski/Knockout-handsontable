@@ -38,43 +38,38 @@
         }
     }
     
-    //connect items with observableArrays
-    var prepareColumnOptions = function (columns) {
-        var props = '',
-            mappedColumns;
-        if(columns){
-            mappedColumns = $.map(columns, function (propertyName, index) {
-                return {data: (function (attr) {
-                    return function (row, value) {
-                        prop = peekByString(row, propertyName.data);
-                        if (prop != null) {
-                            if (typeof value === 'undefined') {
-                                // GET
-                                return ko.utils.unwrapObservable(prop);
-                            } else {
-                                // SET
-                                if (typeof prop === 'function') {
-                                    prop(value);
-                                } else {
-                                    setData(propertyName.data, value, row);
-                                    //prop = value;
-                                }
-                            }
-                        }
-                    }
-                }
-                 )(),type:(function (attr) {
-                     if (propertyName.type){
-                    	 return propertyName.type;
-                         }else 
-                        	return 'text';
-                     		})()
-                }
-            });
-            
-            return mappedColumns;
-        }
-    }
+        //connect items with observableArrays
+     var prepareColumnOptions = function (columns) {
+         var props = '',
+             mappedColumns;
+         if (columns) {
+             mappedColumns = $.map(columns, function (column, index) {
+             var tempColumn = $.extend(true, {}, column);
+             tempColumn.data =(function (attr) {
+                         return function (row, value) {
+                             console.log(column.data);
+                             prop = peekByString(row, column.data);
+
+                             if (prop) {
+                                 if (typeof value === 'undefined') {
+                                     // GET
+                                     return ko.utils.unwrapObservable(prop);
+                                 } else {
+                                     // SET
+                                     if (typeof prop === 'function') {
+                                         prop(value);
+                                     } else {
+                                         prop = value;
+                                     }
+                                 }
+                             }
+                         }
+                     })();
+                     return tempColumn;
+             });
+             return mappedColumns;
+         }
+     };
     ko.bindingHandlers.handsontable = {
         init: function (element, valueAccessor, allBindingsAccessor, data, context) {
             var $element = $(element),
